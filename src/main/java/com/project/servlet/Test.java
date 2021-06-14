@@ -1,31 +1,23 @@
 package com.project.servlet;
 
 import java.io.IOException;
-
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.project.entities.Employee;
-import com.project.service.IEmployeService;
-
 /**
- * Servlet implementation class HomeServlet
+ * Servlet implementation class Test
  */
-@WebServlet("/HomeServlet")
-public class HomeServlet extends HttpServlet {
+@WebServlet(name = "Test", urlPatterns = "/test")
+public class Test extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	@EJB
-    private IEmployeService iEmployeService;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeServlet() {
+    public Test() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,19 +27,7 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		String message = "Bonjour Toto";
-		request.setAttribute("variable", message);
-		
-		Employee employee = new Employee();
-		employee.setEmail("mbayesokhnathiam@gmail.com");
-		employee.setNom("THIAM");
-		employee.setPrenom("Mbaye");
-		employee.setTelephone("771327735");
-		
-		iEmployeService.saveEmployee(employee);
-		request.setAttribute("employee", employee);
-		request.getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -57,7 +37,5 @@ public class HomeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	
-	
 
 }
