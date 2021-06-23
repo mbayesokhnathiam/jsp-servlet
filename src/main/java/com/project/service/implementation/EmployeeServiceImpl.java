@@ -18,7 +18,7 @@ public class EmployeeServiceImpl implements IEmployeService {
 	@Override
 	public List<Employee> getAllEmployees() {
 		// TODO Auto-generated method stub
-		return null;
+		 return this.session.createQuery("select e from Employee e",Employee.class).getResultList();
 	}
 
 	@Override
